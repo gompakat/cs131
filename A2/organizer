@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 [directory-to-organize]"
+    exit 1
+fi
+
+TARGET_DIR=$1
+
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "Directory does not exist: $TARGET_DIR"
+    exit 1
+fi
+
+echo "Script is running, checking files in $TARGET_DIR..."
+echo "Looking for files"
+
+for file in "$TARGET_DIR"/*.*; do
+    if [ -f "$file" ]; then
+        EXTENSION="${file##*.}"
+        DIRECTORY="$TARGET_DIR/$EXTENSION"
+        if [ ! -d "$DIRiECTORY" ]; then
+            echo "Creating directory for .$EXTENSION files."
+            mkdir -p "$DIRECTORY"
+        fi
+        echo "Moving $file to $DIRECTORY/"
+        mv "$file" "$DIRECTORY/"
+    else
+        echo "No eligible files found or skipped: $file"
+    fi
+done
+
+echo "Files organized."
+
