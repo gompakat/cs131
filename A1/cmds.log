@@ -1,0 +1,17 @@
+1) mkdir a1 + cd a1
+2) pwd (when in the a1 directory)
+3) id
+4) ls /proc/ | grep mem (to look for memory info file)
+   ls /proc/ | grep cpu (to look for info about CPU's)
+5) tail meminfo
+6)
+head cpuinfo
+tail cpuinfo
+cat cpuinfo
+7)
+ls /etc/ | grep os
+head os-release
+Section B
+8) grep "2019-05-12" 2019-05.csv | awk -F, '{ ++n; sum += $17 } END { print "Average is: "sum"/"n" = "sum/n }'
+9) awk -F, '$2 ~ /2019-05-12/ { if ($17 > highest) highest = $17 } END { print "Highest total amount paid is:", highest }' 2019-05.csv
+10) awk -F, '$4 >= 3 {print $9}' 2019-05.csv | sort | uniq -c | sort -nr | head -10
